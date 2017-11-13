@@ -23,18 +23,39 @@ let getSpecificUser = (req, res) => {
   })
 }
 
-let postUser = (res, req) => {
+let postUser = (req, res) => {
+  //create record database
   User.create(req.body)
   .then(()=>{
-    res.send({message: "data successful inserted"})
+    res.send({body: req.body})
   }).catch(err=>{
-    res.send(err)
+    res.send({err: err})
   })
 }
 
+let updateUser = (req, res) => {
+  User.update(req.body, {where: {id: req.params.id}})
+  .then(()=>{
+    res.send({msg: "user successfuly updated"})
+  }).catch(err=>{
+    res.send({err: err})
+  })
+}
+
+let deleteUser = (req, res) =>{
+  // res.send(req.params.id)
+  User.destroy({where: {id: req.params.id}})
+  .then(()=>{
+    res.send({msg: "user successfuly deleted"})
+  }).catch(err=>{
+    res.send({err: err})
+  })
+}
 
 module.exports = {
   getUsers,
   getSpecificUser,
-  postUser
+  postUser,
+  updateUser,
+  deleteUser
 };
