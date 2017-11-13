@@ -1,0 +1,27 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "REST API, documentation with markdown, securing API with JWT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fariswd/rest-api.git"
+  },
+  "author": "Faris Widyantho <radenfaris@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fariswd/rest-api/issues"
+  },
+  "homepage": "https://github.com/fariswd/rest-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "pg": "^7.4.0",
+    "sequelize": "^4.22.6"
+  }
+}
