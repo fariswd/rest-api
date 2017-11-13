@@ -26,7 +26,7 @@ let authUser = (req, res, next) =>{
   if(req.params.id == req.verifiedUser.id || req.verifiedUser.isAdmin == true){
     next();
   } else {
-    res.send({msg: "not Authorized"})
+    res.status(401).send({msg: "not Authorized"})
   }
   
 }
