@@ -46,7 +46,7 @@ let postUser = (req, res) => {
   //create record database
   User.create(req.body)
   .then(()=>{
-    res.send({body: req.body})
+    res.send({msg: "user successfuly created"})
   }).catch(err=>{
     res.send({err: err})
   })

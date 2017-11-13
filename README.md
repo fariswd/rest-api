@@ -19,6 +19,10 @@ REST API, documentation with markdown, securing API with JWT
 npm install
 ```
 2. create database
+```sh
+sequelize db:migrate
+sequelize db:seed:all
+```
 3. edit config.json
 4. edit env-temp file to your configuration
 5. start

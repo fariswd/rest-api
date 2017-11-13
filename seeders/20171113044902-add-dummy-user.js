@@ -13,12 +13,12 @@ module.exports = {
       }], {});
     */
     return queryInterface.bulkInsert('Users', [{
-      username: 'capung',
-      password: 'belumhash',
+      username: 'admin',
+      password: '$2a$10$u8wT78SvopVJ52DUBnoQAutuhvtMme3r30O7jhe7k9VuMldqr1hlK',
       isAdmin: true,
-      first_name: 'capung',
-      last_name: 'tempur',
-      email: 'c@pung.com',
+      first_name: 'admin',
+      last_name: 'admin',
+      email: 'adm@in.com',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

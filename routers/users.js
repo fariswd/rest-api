@@ -24,7 +24,7 @@ router.post('/users', verifyUser.isLogin, verifyUser.isAdmin, hashPassword.hash,
 router.delete('/users/:id', verifyUser.isLogin, verifyUser.isAdmin, Users.deleteUser)
 
 //admin and auth user
-router.put('/users/:id', verifyUser.isLogin, verifyUser.authUser, hashPassword.hash, Users.updateUser)
+router.put('/users/:id', verifyUser.isLogin, verifyUser.authUser, verifyUser.isAdminChange, hashPassword.hash, Users.updateUser)
 
 
 module.exports = router;

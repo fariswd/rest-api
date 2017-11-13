@@ -9,12 +9,10 @@ let isLogin = (req, res, next) => {
       req.verifiedUser = decoded
       next()
     }
-    
   });
 }
 
 let isAdmin = (req, res, next) => {
-  // console.log(req.verifiedUser);
   if(req.verifiedUser.isAdmin){
     next()
   } else {
@@ -22,7 +20,7 @@ let isAdmin = (req, res, next) => {
   }
 }
 
-let authUser = (req, res, next) =>{
+let authUser = (req, res, next) => {
   if(req.params.id == req.verifiedUser.id || req.verifiedUser.isAdmin == true){
     next();
   } else {
@@ -31,8 +29,20 @@ let authUser = (req, res, next) =>{
   
 }
 
+let isAdminChange = (req, res, next) => {
+  if(req.body.isAdmin == 'false'){
+    console.log('masuk sini');
+    next()
+  } else if (req.body.isAdmin && req.verifiedUser.isAdmin){
+    next()
+  } else {
+    res.status(401).send({msg: "not Authorized change admin"})
+  }
+}
+
 module.exports = {
   isLogin,
   isAdmin,
-  authUser
+  authUser,
+  isAdminChange
 };

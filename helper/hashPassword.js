@@ -25,7 +25,7 @@ let reverse = (req, res, next) =>{
         req.user = user
         next()
       } else {
-        res.send({msg: "username or password wrong"})
+        res.send({msg: "invalid username or password"})
       }
     });
     
