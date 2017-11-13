@@ -11,9 +11,7 @@ app.use(bodyParser.json()) // parse application/json
 app.use(morgan('combined'))
 
 //users
-app.use('/api/users', users)
-// app.get('/users', Users.getUsers)
-
+app.use('/api/', users)
 
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

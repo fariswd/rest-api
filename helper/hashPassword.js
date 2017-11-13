@@ -22,6 +22,7 @@ let reverse = (req, res, next) =>{
   .then(user=>{
     bcrypt.compare(req.body.password, user.password, function(err, result) {
       if(result){
+        req.user = user
         next()
       } else {
         res.send({msg: "username or password wrong"})

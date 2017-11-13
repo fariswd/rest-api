@@ -4,16 +4,27 @@ const Users   = require('../controllers/users_crud')
 //helper
 const hashPassword = require('../helper/hashPassword')
 
-// this => /api/users/....
-router.get('/', Users.getUsers)
+//middleware
+const verifyUser = require('../middlewares/verifyUser')
 
-router.get('/:id', Users.getSpecificUser)
+// routes => /api/....
+router.post('/signup', hashPassword.hash, Users.postUser) 
+router.post('/signin', hashPassword.reverse, Users.signin)
 
-router.post('/', hashPassword.hash, Users.postUser)
+//admin only
+router.get('/users/', verifyUser.isLogin, verifyUser.isAdmin, Users.getUsers)
 
-router.delete('/:id', Users.deleteUser)
+//admin and auth user
+router.get('/users/:id', verifyUser.isLogin, verifyUser.authUser, Users.getSpecificUser)
 
-router.put('/:id', hashPassword.hash, Users.updateUser)
+//admin only
+router.post('/users', verifyUser.isLogin, verifyUser.isAdmin, hashPassword.hash, Users.postUser)
+
+//admin only
+router.delete('/users/:id', verifyUser.isLogin, verifyUser.isAdmin, Users.deleteUser)
+
+//admin and auth user
+router.put('/users/:id', verifyUser.isLogin, verifyUser.authUser, hashPassword.hash, Users.updateUser)
 
 
 module.exports = router;

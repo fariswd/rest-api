@@ -1,5 +1,24 @@
 //require models
 const User = require('../models').User
+const jwt  = require('jsonwebtoken');
+require('dotenv').config()
+
+
+let signin = (req, res) => {
+    // console.log(req.body.user);
+    let obj = {
+      id: req.user.id,
+      username: req.user.username,
+      isAdmin: req.user.isAdmin
+    }
+    jwt.sign(obj, process.env.SECRET_KEY, function(err, token) {
+      res.send({
+        msg: "login successfuly",
+        token: token
+      })
+    })
+  
+}
 
 let getUsers = (req, res) => {
   User.findAll()
@@ -53,6 +72,7 @@ let deleteUser = (req, res) =>{
 }
 
 module.exports = {
+  signin,
   getUsers,
   getSpecificUser,
   postUser,
